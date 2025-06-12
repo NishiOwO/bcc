@@ -10,8 +10,13 @@ EXEC =
 .PHONY: all clean
 .SUFFIXES: .c .o
 
-OBJS = src/main.o src/util.o
-OBJS += src/arch/h316.o src/arch/pdp11.o
+OBJS = src/main.o src/util.o src/arch.o
+
+CFLAGS += -DARCH_H316
+OBJS += src/arch/h316.o
+
+CFLAGS += -DARCH_PDP11
+OBJS +=src/arch/pdp11.o
 
 all: bcc$(EXEC)
 
