@@ -1,7 +1,7 @@
 VERSION = pre-1
 
 CC = cc
-CFLAGS =
+CFLAGS = -MMD
 LDFLAGS =
 LIBS =
 
@@ -11,12 +11,7 @@ EXEC =
 .SUFFIXES: .c .o
 
 OBJS = src/main.o src/util.o src/arch.o
-
-CFLAGS += -DARCH_PDP11
-OBJS += src/arch/pdp11.o
-
-CFLAGS += -DARCH_S360
-OBJS += src/arch/s360.o
+OBJS += src/arch/pdp11.o src/arch/s360.o
 
 all: bcc$(EXEC)
 
@@ -26,5 +21,8 @@ bcc$(EXEC): $(OBJS)
 .c.o:
 	$(CC) $(CFLAGS) -DBCC_VERSION='"$(VERSION)"' -c -o $@ $<
 
+-include src/*.d
+-include src/*/*.d
+
 clean:
-	rm -f bcc bcc.exe src/*.o src/*/*.o
+	rm -f bcc bcc.exe src/*.o src/*/*.o src/*.d src/*/*.d
