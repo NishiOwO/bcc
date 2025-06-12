@@ -11,6 +11,7 @@ EXEC =
 .SUFFIXES: .c .o
 
 OBJS = src/main.o src/util.o
+OBJS += src/arch/h316.o src/arch/pdp11.o
 
 all: bcc$(EXEC)
 

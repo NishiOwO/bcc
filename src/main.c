@@ -3,8 +3,13 @@
 #include <stdio.h>
 
 int main(int argc, char** argv){
-	printf("Bootstrap C compiler\n");
-	printf("Version %s %s\n", BCC_VERSION, bcc_date());
-	printf("Copyright (c) 2025 Nishi\n");
-	printf("Sourcew code is available under the 3-clause BSD license.\n");
+	int i;
+	for(i = 1; i < argc; i++){
+		if(argv[i][0] == '-'){
+			int n;
+			if((n = bcc_strstart(argv[i], "-march=")) != -1){
+			}
+		}else{
+		}
+	}
 }
