@@ -12,11 +12,11 @@ EXEC =
 
 OBJS = src/main.o src/util.o src/arch.o
 
-CFLAGS += -DARCH_H316
-OBJS += src/arch/h316.o
-
 CFLAGS += -DARCH_PDP11
-OBJS +=src/arch/pdp11.o
+OBJS += src/arch/pdp11.o
+
+CFLAGS += -DARCH_S360
+OBJS += src/arch/s360.o
 
 all: bcc$(EXEC)
 
@@ -27,4 +27,4 @@ bcc$(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) -DBCC_VERSION='"$(VERSION)"' -c -o $@ $<
 
 clean:
-	rm -f bcc bcc.exe src/*.o
+	rm -f bcc bcc.exe src/*.o src/*/*.o
